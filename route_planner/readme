@@ -1,0 +1,107 @@
+Smart Delivery Route Planner
+
+This repository contains a Python script for a "Smart Delivery Route Planner." It calculates the most efficient delivery route for a set of locations based on priority levels (high, medium, low) and travel distance.
+
+This project was developed as a solution for a challenge scenario.
+
+Problem Statement
+
+A delivery company needs to optimize its routes. The system must plan a route that delivers packages to multiple locations based on three criteria:
+
+Priority First: High-priority deliveries must be completed before medium and low-priority ones.
+
+Minimize Distance: The route should minimize the total travel distance (within priority groups).
+
+Stable Order: If two delivery points have the same priority, they must be visited in the order they were given in the input.
+
+Features
+
+Priority-Based Sorting: Correctly routes to high, then medium, then low priority locations.
+
+Stable Sort: Guarantees that same-priority items maintain their original input order.
+
+Distance Calculation: Uses the Euclidean distance formula to calculate the total distance of the optimized route.
+
+Two Modes:
+
+Example Mode: Run with the default data from the problem statement.
+
+Dynamic Mode: (Bonus Challenge) Allows the user to enter custom locations and priorities dynamically.
+
+Prerequisites
+
+Python 3.x
+
+No external libraries are required. The script uses only the built-in math module.
+
+How to Use
+
+Clone this repository or download the route_planner.py file.
+
+Open your terminal or command prompt.
+
+Navigate to the directory containing the script.
+
+Run the script:
+
+python route_planner.py
+
+
+When prompted, choose your data source:
+
+Enter e to use the hardcoded (e)xample data.
+
+Enter i to (i)nput your own locations and priorities.
+
+Example
+
+Using the (e)xample mode provides the following output, matching the problem statement:
+
+Input Data:
+
+Locations: [(0, 0), (2, 3), (5, 1), (6, 4), (1, 2)]
+
+Priorities: [high, medium, high, low, medium]
+
+Calculated Output:
+
+--- Results ---
+Optimized Route: [(0, 0), (5, 1), (2, 3), (1, 2), (6, 4)]
+Total Distance: 12.73 units
+
+
+How It Works
+
+The core of this solution relies on stable sorting.
+
+Data Structure: Each location is combined with its priority and its original index into a list of dictionaries. A numerical value is assigned to each priority (high: 0, medium: 1, low: 2).
+
+Sorting Logic: The script sorts this list of dictionaries using Python's built-in sort() method, with the key set to the numerical priority_level.
+
+Why This Works: Python's sort is "stable" by default. This means that if two items have the same sorting key (e.g., two 'high' priorities), their original relative order is guaranteed to be preserved. This single step elegantly fulfills both Rule #1 (priorities) and Rule #3 (original order).
+
+Distance Calculation: After sorting, the script iterates through the new route, using the calculate_distance function to sum the distances between each consecutive point.
+
+Bonus Challenge: Traveling Salesman Problem (TSP)
+
+The bonus challenge to "implement a more advanced algorithm" like TSP changes the problem. It implies you should find the absolute shortest path within each priority group, ignoring Rule #3 (input order).
+
+This is a much more complex computational problem. A good approach (not implemented in this script) would be a Nearest Neighbor algorithm:
+
+Group all 'high' priority points.
+
+Start at the first 'high' point.
+
+Find the closest unvisited 'high' point and travel to it.
+
+Repeat until all 'high' points are visited.
+
+From the last 'high' point, find the closest 'medium' point.
+
+Repeat the "nearest neighbor" process for all 'medium' points.
+
+Repeat again for all 'low' points.
+
+License
+
+This project is licensed under the MIT License.
