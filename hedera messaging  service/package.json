@@ -1,0 +1,14 @@
+{
+    "name": "hedera-hcs-messaging",
+    "version": "1.0.0",
+    "description": "A simple HCS messaging service for Hedera.",
+    "main": "hcs_messaging.js",
+    "type": "module",
+    "scripts": {
+      "start": "node hcs_messaging.js"
+    },
+    "dependencies": {
+      "@hashgraph/sdk": "^2.50.0",
+      "dotenv": "^16.4.5"
+    }
+  }
